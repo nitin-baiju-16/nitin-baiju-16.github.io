@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nitin Baiju</title>
+    <meta name="description" content="Electronics enthusiast and ECE student specializing in embedded systems, PCB design, and Python automation. View projects and connect.">
+    <meta name="keywords" content="electronics, embedded systems, PCB design, Arduino, ESP32, Python, portfolio, ECE student">
+    <meta name="author" content="nitin-baiju">
+    <meta property="og:title" content="Portfolio">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nitinbaiju.com">
+    <meta property="og:description" content="Electronics enthusiast and ECE student specializing in embedded systems and PCB design.">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -12,9 +19,14 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-content">
-            <div class="logo">NB</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
+            <div class="logo" aria-label="Nitin Baiju initials">NB</div>
+            <button class="mobile-menu-btn" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" role="navigation">
+                <li><a href="#home" aria-current="page">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
@@ -27,7 +39,7 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1 class="animate-text">Nitin Baiju</h1>
-            <p class="animate-text-delay">Electronics Hobbyist | ECE Student @ GEC Thrissur</p>
+            <p class="animate-text-delay" id="typing-text">Electronics Hobbyist | ECE Student @ GEC Thrissur</p>
             <p class="hero-subtitle">Building things that blink, buzz, and automate</p>
             <div class="hero-buttons">
                 <a href="#projects" class="btn primary">View Projects</a>
@@ -35,8 +47,9 @@
             </div>
         </div>
         <div class="scroll-indicator">
+            <span class="sr-only">Scroll down to see more content</span>
             <span>Scroll Down</span>
-            <i class="fas fa-chevron-down"></i>
+            <i class="fas fa-chevron-down" aria-hidden="true"></i>
         </div>
     </section>
 
@@ -51,7 +64,7 @@
                     <p class="highlight">What excites me most? Creating tools that people actually use—like my mark extraction tool still running at my school.</p>
                 </div>
                 <div class="education-card fade-in-delay">
-                    <i class="fas fa-graduation-cap"></i>
+                    <i class="fas fa-graduation-cap" aria-hidden="true"></i>
                     <div>
                         <h3>B.Tech Electronics & Communication</h3>
                         <p>Government Engineering College, Thrissur</p>
@@ -68,7 +81,7 @@
             <h2 class="section-title">Technical Arsenal</h2>
             <div class="skills-grid">
                 <div class="skill-card slide-in">
-                    <i class="fas fa-microchip"></i>
+                    <i class="fas fa-microchip" aria-hidden="true"></i>
                     <h3>Strong Proficiency</h3>
                     <div class="skill-tags">
                         <span>Python</span>
@@ -81,17 +94,18 @@
                     </div>
                 </div>
                 <div class="skill-card slide-in-delay-1">
-                    <i class="fas fa-code"></i>
+                    <i class="fas fa-code" aria-hidden="true"></i>
                     <h3>Intermediate</h3>
                     <div class="skill-tags">
                         <span>HTML/CSS</span>
                         <span>MySQL</span>
                         <span>Verilog</span>
+                        <span>Assembly</span>
                         <span>Keil</span>
                     </div>
                 </div>
                 <div class="skill-card slide-in-delay-2">
-                    <i class="fas fa-robot"></i>
+                    <i class="fas fa-robot" aria-hidden="true"></i>
                     <h3>Simulation & Tools</h3>
                     <div class="skill-tags">
                         <span>LTspice</span>
@@ -101,7 +115,7 @@
                     </div>
                 </div>
                 <div class="skill-card slide-in-delay-3">
-                    <i class="fas fa-bolt"></i>
+                    <i class="fas fa-bolt" aria-hidden="true"></i>
                     <h3>Learning</h3>
                     <div class="skill-tags">
                         <span>Java</span>
@@ -117,11 +131,12 @@
     <div class="featured-banner">
         <div class="container">
             <div class="featured-content">
-                <span class="featured-tag">⭐ FEATURED</span>
+                <span class="featured-tag" role="status">⭐ FEATURED</span>
                 <h3>Mark Extraction Tool</h3>
                 <p>Real-world impact: Still actively used by my school to process CBSE marksheets</p>
-                <a href="https://github.com/nitin-baiju-16/mark" target="_blank" class="featured-link">
-                    <i class="fab fa-github"></i> View on GitHub
+                <a href="https://github.com/nitin-baiju-16/mark" target="_blank" class="featured-link" rel="noopener noreferrer">
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    <span>View on GitHub</span>
                 </a>
             </div>
         </div>
@@ -133,28 +148,28 @@
             <h2 class="section-title">Projects That Matter</h2>
             <div class="projects-grid">
                 <!-- Mark Extraction Tool -->
-                <div class="project-card scale-in">
+                <div class="project-card scale-in" data-category="python">
                     <div class="project-header">
-                        <i class="fas fa-file-csv"></i>
+                        <i class="fas fa-file-csv" aria-hidden="true"></i>
                         <h3>Mark Extraction Tool</h3>
                     </div>
                     <p class="project-description">Python tool that transforms messy CBSE marksheet text files into organized CSV format. Just map subject codes to names, and it handles the rest.</p>
                     <div class="project-highlight">
-                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-check-circle" aria-hidden="true"></i>
                         <span>Production use: Active in school since deployment</span>
                     </div>
                     <div class="project-tech">
                         <span>Python</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/nitin-baiju-16/mark" target="_blank" class="project-link"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://github.com/nitin-baiju-16/mark" target="_blank" class="project-link" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> Code</a>
                     </div>
                 </div>
 
                 <!-- Discord Bot -->
-                <div class="project-card scale-in-delay-1">
+                <div class="project-card scale-in-delay-1" data-category="python">
                     <div class="project-header">
-                        <i class="fab fa-discord"></i>
+                        <i class="fab fa-discord" aria-hidden="true"></i>
                         <h3>Discord Moderation Bot</h3>
                     </div>
                     <p class="project-description">Custom Python bot for server moderation, music playback, and automated commands. Built for my own server's unique needs.</p>
@@ -165,9 +180,9 @@
                 </div>
 
                 <!-- Digital Voltmeter -->
-                <div class="project-card scale-in-delay-2">
+                <div class="project-card scale-in-delay-2" data-category="embedded">
                     <div class="project-header">
-                        <i class="fas fa-bolt"></i>
+                        <i class="fas fa-bolt" aria-hidden="true"></i>
                         <h3>8051 Digital Voltmeter</h3>
                     </div>
                     <p class="project-description">ADC0808 interfaced with 8051 microcontroller, displaying voltage readings on LCD. Fully simulated in Proteus before hardware implementation.</p>
@@ -180,9 +195,9 @@
                 </div>
 
                 <!-- ESP32 WiFi Car -->
-                <div class="project-card">
+                <div class="project-card" data-category="embedded">
                     <div class="project-header">
-                        <i class="fas fa-car"></i>
+                        <i class="fas fa-car" aria-hidden="true"></i>
                         <h3>WiFi Controlled Car</h3>
                     </div>
                     <p class="project-description">ESP32-based remote-controlled car with WiFi connectivity. Simple yet complete IoT project demonstrating embedded controls.</p>
@@ -194,9 +209,9 @@
                 </div>
 
                 <!-- TDA2030A Audio Amplifier -->
-                <div class="project-card">
+                <div class="project-card" data-category="electronics">
                     <div class="project-header">
-                        <i class="fas fa-volume-up"></i>
+                        <i class="fas fa-volume-up" aria-hidden="true"></i>
                         <h3>TDA2030A Audio Amplifier</h3>
                     </div>
                     <p class="project-description">8W audio amplifier built with TDA2030A IC. Drives 10Ω speaker via phone aux input.</p>
@@ -207,9 +222,9 @@
                 </div>
 
                 <!-- Traffic Light System -->
-                <div class="project-card">
+                <div class="project-card" data-category="electronics">
                     <div class="project-header">
-                        <i class="fas fa-traffic-light"></i>
+                        <i class="fas fa-traffic-light" aria-hidden="true"></i>
                         <h3>Transistor Traffic Light</h3>
                     </div>
                     <p class="project-description">Timed traffic light controller built with discrete transistors. Pure analog approach to sequential logic.</p>
@@ -220,9 +235,9 @@
                 </div>
 
                 <!-- Line Follower -->
-                <div class="project-card">
+                <div class="project-card" data-category="electronics">
                     <div class="project-header">
-                        <i class="fas fa-arrows-alt"></i>
+                        <i class="fas fa-arrows-alt" aria-hidden="true"></i>
                         <h3>LDR Line Follower</h3>
                     </div>
                     <p class="project-description">Light-sensing line follower robot using LDRs for path detection. Classic robotics project with analog sensing.</p>
@@ -238,7 +253,7 @@
             <div class="current-project">
                 <h3>🔥 Currently Working On</h3>
                 <div class="current-project-card">
-                    <i class="fas fa-car-side"></i>
+                    <i class="fas fa-car-side" aria-hidden="true"></i>
                     <div>
                         <h4>Autonomous BAJA Vehicle</h4>
                         <p>Developing autonomous systems for SAE BAJA competition vehicle as part of SAE club at college.</p>
@@ -256,26 +271,35 @@
             <div class="contact-content">
                 <div class="contact-info fade-in">
                     <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
                         <p>nitinbaiju16@gmail.com</p>
                     </div>
                     <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                         <p>India</p>
                     </div>
                 </div>
                 <div class="social-links fade-in-delay">
-                    <a href="https://github.com/nitin-baiju-16" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/nitin-baiju/" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/nitin-baiju-16" target="_blank" class="social-link" rel="noopener noreferrer" aria-label="GitHub">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/nitin-baiju/" target="_blank" class="social-link" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 Nitin Baiju</p>
+            <p>&copy; <span id="current-year">2026</span> Nitin Baiju. All rights reserved.</p>
         </div>
     </footer>
 
