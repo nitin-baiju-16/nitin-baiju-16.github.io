@@ -19,6 +19,42 @@ body {
     width: 100%;
 }
 
+/* Accessibility */
+:focus {
+    outline: 2px solid #00d4ff;
+    outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 2px solid #00d4ff;
+    outline-offset: 2px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -73,12 +109,13 @@ section {
     font-weight: 500;
     transition: color 0.3s ease;
     position: relative;
+    padding: 0.5rem 0;
 }
 
 .nav-links a::after {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: 0;
     left: 0;
     width: 0;
     height: 2px;
@@ -86,8 +123,41 @@ section {
     transition: width 0.3s ease;
 }
 
-.nav-links a:hover::after {
+.nav-links a:hover::after,
+.nav-links a:focus::after {
     width: 100%;
+}
+
+/* Mobile Menu */
+.mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.mobile-menu-btn span {
+    width: 25px;
+    height: 2px;
+    background: white;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-radius: 2px;
+}
+
+.mobile-menu-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.mobile-menu-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
 }
 
 /* Hero Section */
@@ -151,9 +221,11 @@ section {
     text-decoration: none;
     font-weight: 600;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
 }
 
-.btn:hover {
+.btn:hover,
+.btn:focus {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
 }
@@ -166,6 +238,7 @@ section {
 .btn.secondary {
     border: 2px solid #ffffff;
     color: #ffffff;
+    background: transparent;
 }
 
 .scroll-indicator {
@@ -273,7 +346,8 @@ section {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.skill-card:hover {
+.skill-card:hover,
+.skill-card:focus-within {
     transform: translateY(-10px);
     box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
 }
@@ -351,7 +425,8 @@ section {
     transition: background 0.3s ease;
 }
 
-.featured-link:hover {
+.featured-link:hover,
+.featured-link:focus {
     background: rgba(255, 255, 255, 0.2);
 }
 
@@ -372,10 +447,18 @@ section {
     padding: 1.5rem;
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
 }
 
-.project-card:hover {
+.project-card.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.project-card:hover,
+.project-card:focus-within {
     transform: translateY(-5px);
     border-color: #00d4ff40;
 }
@@ -446,9 +529,11 @@ section {
     align-items: center;
     gap: 0.3rem;
     transition: color 0.3s ease;
+    padding: 0.3rem 0;
 }
 
-.project-link:hover {
+.project-link:hover,
+.project-link:focus {
     color: #00d4ff;
 }
 
@@ -542,9 +627,42 @@ section {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.social-link:hover {
+.social-link:hover,
+.social-link:focus {
     background: linear-gradient(45deg, #00d4ff, #7b2cbf);
     transform: translateY(-5px);
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #00d4ff, #7b2cbf);
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    z-index: 999;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0.9;
+}
+
+.back-to-top:hover,
+.back-to-top:focus {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+    opacity: 1;
+}
+
+.back-to-top.visible {
+    display: flex;
 }
 
 /* Footer */
@@ -648,8 +766,27 @@ footer p {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: flex;
+    }
+    
     .nav-links {
         display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 10, 0.98);
+        backdrop-filter: blur(10px);
+        padding: 2rem;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-links.active {
+        display: flex;
     }
     
     .hero h1 {
@@ -673,5 +810,69 @@ footer p {
     
     .projects-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 250px;
+        text-align: center;
+    }
+}
+
+
+
+
+
+
+
+
+
+/* Ensure content stays above the canvas */
+.navbar, .hero, .about, .skills, .featured-banner, .projects, .contact, footer {
+    position: relative;
+    z-index: 1;
+}
+
+/* Add a subtle overlay to ensure text readability */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, rgba(10, 10, 10, 0.3) 100%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Adjust canvas opacity for better readability */
+#animated-bg {
+    transition: opacity 0.5s ease;
+}
+
+/* Make effect more subtle on text-heavy sections if needed */
+@media (max-width: 768px) {
+    #animated-bg {
+        opacity: 0.3;
     }
 }
