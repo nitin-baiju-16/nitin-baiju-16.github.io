@@ -1,1 +1,1 @@
-just to host the portfolio website
+just to host website
